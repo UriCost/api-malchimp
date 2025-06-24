@@ -25,10 +25,16 @@ const MailchimpController = {
       });
 
       return res.status(200).json({ success: true, result });
-    } catch (error) {
-      console.error('Erro:', error.message);
-      return res.status(500).json({ success: false, message: 'Erro interno' });
-    }
+   } catch (error) {
+  const status = error.statusCode || 500;
+
+  return res.status(status).json({
+    success: false,
+    statusCode: status,
+    error: error.error || 'Erro interno',
+    details: error.details || null,
+  });
+}
   },
 };
 
