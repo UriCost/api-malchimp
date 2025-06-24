@@ -5,17 +5,17 @@ const MailchimpService = require('../../infrastructure/mailchimp/MailchimpServic
 const User = require('../../domain/entities/User');
 
 const SubscribeUserUseCase = {
-  async execute({ email, nome, phone, tag, atualizar }) {
-    // Valida os dados com base nas regras do domínio (User)
+  async execute({ email, nome, phone, tag, atualizar, apiKey, listId }) {
     const user = new User(email, nome, phone);
 
-    // Envia os dados para o serviço do Mailchimp
     const response = await MailchimpService.subscribeOrUpdate({
       email: user.email,
       nome: user.nome,
       phone: user.phone,
       tag,
       atualizar,
+      apiKey,
+      listId,
     });
 
     return response;
