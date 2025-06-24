@@ -1,0 +1,3 @@
+MAILCHIMP_API_KEY=sua_chave_aqui
+MAILCHIMP_LIST_ID=sua_lista_aqui
+PORT=3000
